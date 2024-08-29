@@ -42,13 +42,9 @@ node --version
 
 4. Como probar la API
 
-   Descargar Postman https://www.postman.com/downloads/
+   Descargar [Postman](https://www.postman.com/downloads/) o la [Extension de Postman de VSCODE](https://marketplace.visualstudio.com/items?itemName=Postman.postman-for-vscode) y hacer una petición a `http://localhost:8080/test`
 
-   Extension de Postman de VSCODE https://marketplace.visualstudio.com/items?itemName=Postman.postman-for-vscode
-
-   y hacer una petición a http://localhost:8080/test
-
-## Recursos utiles
+### Recursos utiles
 
 Express https://expressjs.com/
 
