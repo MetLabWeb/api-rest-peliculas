@@ -1,8 +1,10 @@
 import { MovieToSave, Movie } from "./movies.types";
 import fs from "fs";
 
+// INIT MOVIES
 let movies: Movie[] = loadMoviesFromFile();
 
+// LOAD AND SAVE MOVIES IN FILE
 function loadMoviesFromFile(): Movie[] {
   try {
     const data = fs.readFileSync("./movies.json", "utf-8");
@@ -22,14 +24,21 @@ function saveMoviesInFile() {
   }
 }
 
+// FIND METHODS
 export const findAll = async (): Promise<Movie[]> => movies;
 
-export const findById = async (id: number): Promise<Movie> => movies[id];
+export const findById = async (id: number): Promise<Movie | undefined> =>
+  movies.find((movie) => movie.id === id);
 
+export const findByGenre = async (genre: string): Promise<Movie | undefined> =>
+  movies.find((movie) => movie.genre.includes(genre));
+
+// CREATE & EDIT METHODS
 export const create = async (
   movieToSave: MovieToSave
 ): Promise<null | Movie> => {
-  const newId = movies[movies.length].id + 1;
+  const newId = movies[movies.length - 1].id + 1;
+
   const newMovie = {
     id: newId,
     ...movieToSave,
@@ -38,38 +47,62 @@ export const create = async (
   movies = [...movies, newMovie];
 
   saveMoviesInFile();
+  const nexIndex = movies.length - 1;
 
-  return movies[newId];
+  return movies[nexIndex];
 };
 
 export const update = async (
   id: number,
   updateValues: MovieToSave
 ): Promise<Movie | null> => {
-  const movie = await findById(id);
+  let indexToEdit = 0;
+  const movie = movies.find((movie, index) => {
+    if (movie.id === id) {
+      indexToEdit = index;
+      return true;
+    } else {
+      return false;
+    }
+  });
 
   if (!movie) {
     return null;
   }
 
-  movies[id] = {
-    id,
+  movies[indexToEdit] = {
+    ...movie,
     ...updateValues,
   };
 
   saveMoviesInFile();
 
-  return movies[id];
+  return movies[indexToEdit];
 };
 
-export const remove = async (id: number): Promise<null | void> => {
-  const movie = await findById(id);
+// REMOVE METHOD
+export const remove = async (id: number): Promise<null | true> => {
+  let indexToRemove = 0;
+
+  const movie = movies.find((movie, index) => {
+    if (movie.id === id) {
+      indexToRemove = index;
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  console.log("movie", movie);
+  console.log("index", indexToRemove);
 
   if (!movie) {
     return null;
   }
 
-  delete movies[id];
+  movies.splice(indexToRemove, 1);
 
   saveMoviesInFile();
+
+  return true;
 };
