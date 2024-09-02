@@ -93,9 +93,6 @@ export const remove = async (id: number): Promise<null | true> => {
     }
   });
 
-  console.log("movie", movie);
-  console.log("index", indexToRemove);
-
   if (!movie) {
     return null;
   }

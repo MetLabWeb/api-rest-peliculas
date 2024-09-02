@@ -378,5 +378,24 @@
     "boxOffice": "$968.5 million",
     "production": "Walt Disney Pictures",
     "website": "https://movies.disney.com/the-lion-king"
+  },
+  {
+    "id": 21,
+    "title": "El secreto de sus ojos",
+    "year": 2009,
+    "genre": ["Drama"],
+    "rating": 10,
+    "director": "Juan Jose Campanella",
+    "actors": ["Ricardo Darin"],
+    "plot": "Benjamín Espósito es un oficial de un Juzgado de Instrucción de Buenos Aires que acaba de jubilarse. Su sueño es escribir una novela y, para ello, intentará dar solución a un caso abierto desde hace varias décadas, del cual fue testigo y protagonista.",
+    "poster": "https://fakeimg.pl/220x310/0000ff",
+    "trailer": "https://example.com/secreto_de_sus_ojos_trailer.mp4",
+    "runtime": 127,
+    "awards": "Won 1 Oscars",
+    "country": "Argentina",
+    "language": "Español",
+    "boxOffice": "$56.9 million",
+    "production": "Haddock Films",
+    "website": "https://es.wikipedia.org/wiki/El_secreto_de_sus_ojos"
   }
 ]
